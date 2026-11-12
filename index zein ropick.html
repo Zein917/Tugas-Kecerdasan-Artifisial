@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website profil Program Studi Informatika Barcelona University.">
+  <meta name="theme-color" content="#142B4A">
+  <title>Program Studi Informatika | Barcelona University</title>
+  <style>
+    :root {
+      --navy: #142B4A;
+      --blue: #2563EB;
+      --blue-soft: #DBEAFE;
+      --white: #FFFFFF;
+      --surface: #F3F6FA;
+      --heading: #1E293B;
+      --body: #64748B;
+      --border: #E2E8F0;
+      --radius: 14px;
+      --shadow: 0 12px 32px rgba(20, 43, 74, .08);
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--body);
+      background: var(--white);
+      line-height: 1.65;
+    }
+    h1, h2, h3, h4 {
+      margin: 0 0 14px;
+      color: var(--heading);
+      line-height: 1.2;
+      font-family: Poppins, "Segoe UI", Arial, sans-serif;
+    }
+    p { margin: 0 0 16px; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    [hidden] { display: none !important; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--container), calc(100% - 40px)); margin-inline: auto; }
+    .section { padding: 82px 0; }
+    .section-light { background: var(--surface); }
+    .section-heading { max-width: 720px; margin: 0 auto 42px; text-align: center; }
+    .eyebrow {
+      display: inline-block; margin-bottom: 12px; color: var(--blue);
+      font-size: .82rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .section-heading h2 { font-size: clamp(1.7rem, 3vw, 2.35rem); }
+    .section-heading p { margin-bottom: 0; }
+    .small-note { font-size: .86rem; color: #64748B; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      min-height: 46px; padding: 11px 20px; border: 1px solid transparent;
+      border-radius: 9px; font-weight: 700; cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); }
+    .btn-outline { color: var(--navy); border-color: var(--border); background: var(--white); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+    :focus-visible { outline: 3px solid #93C5FD; outline-offset: 3px; }
+
+    /* Header dan navigasi */
+    .site-header {
+      position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--border); backdrop-filter: blur(12px);
+    }
+    .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; color: var(--navy); font-weight: 800; }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 42px;
+      color: var(--white); background: var(--navy); border-radius: 11px; font-size: .8rem;
+    }
+    .brand-text { line-height: 1.25; }
+    .brand-text small { display: block; margin-top: 4px; color: var(--body); font-size: .7rem; font-weight: 600; }
+    .footer-brand .brand-mark { background: var(--blue); }
+    .footer-brand .brand-text small { color: #CBD5E1; }
+    .nav-links { display: flex; align-items: center; gap: 25px; }
+    .nav-links a { padding: 8px 0; color: #475569; font-size: .92rem; font-weight: 650; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .menu-toggle {
+      display: none; width: 44px; height: 44px; border: 1px solid var(--border);
+      border-radius: 9px; background: var(--white); color: var(--navy); font-size: 1.3rem; cursor: pointer;
+    }
+
+    /* Beranda */
+    .hero {
+      position: relative; overflow: hidden; padding: 86px 0 92px;
+      background: linear-gradient(115deg, #F8FAFC 0%, #EFF6FF 100%);
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 360px; height: 360px; right: -130px; top: -150px;
+      border: 1px solid rgba(37,99,235,.15); border-radius: 50%;
+      box-shadow: 0 0 0 35px rgba(37,99,235,.035), 0 0 0 75px rgba(37,99,235,.025);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 56px; position: relative; z-index: 1; }
+    .hero h1 { max-width: 650px; margin-bottom: 20px; color: var(--navy); font-size: clamp(2.25rem, 5vw, 3.5rem); letter-spacing: -.04em; }
+    .hero h1 span { color: var(--blue); }
+    .hero-copy { max-width: 580px; font-size: 1.05rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-visual {
+      min-height: 350px; display: grid; place-items: center; position: relative; overflow: hidden;
+      border: 1px solid #D7E5F8; border-radius: 24px;
+      background: linear-gradient(145deg, #DCEBFF, #F8FBFF 68%);
+      box-shadow: var(--shadow);
+    }
+    .campus-art { width: 82%; max-width: 430px; }
+    .visual-caption {
+      position: absolute; left: 22px; right: 22px; bottom: 18px; padding: 12px 15px;
+      border: 1px solid rgba(255,255,255,.8); border-radius: 10px;
+      background: rgba(255,255,255,.88); color: var(--navy); font-size: .82rem; font-weight: 700;
+    }
+
+    /* Profil */
+    .profile-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; }
+    .profile-visual {
+      min-height: 330px; display: grid; place-items: center; padding: 28px;
+      border-radius: 18px; background: linear-gradient(145deg, #EAF2FF, #F8FAFC);
+      border: 1px solid var(--border);
+    }
+    .profile-symbol {
+      width: 170px; height: 170px; display: grid; place-items: center; border-radius: 50%;
+      background: var(--white); color: var(--blue); font-size: 4rem; box-shadow: var(--shadow);
+    }
+    .profile-copy h2 { font-size: clamp(1.7rem, 3vw, 2.25rem); }
+    .vision-mission { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
+    .info-card, .feature-card, .academic-card, .lecturer-card, .contact-card {
+      padding: 23px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--white);
+    }
+    .info-card h3 { font-size: 1.08rem; color: var(--navy); }
+    .info-card p, .info-card ul { margin-bottom: 0; font-size: .92rem; }
+    .info-card ul, .info-card ol { padding-left: 20px; }
+    .info-card li { margin-bottom: 8px; }
+    .info-card li:last-child { margin-bottom: 0; }
+    .lecturer-update-note { margin-top: 18px; text-align: center; }
+
+    /* Keunggulan */
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .feature-card { box-shadow: 0 5px 18px rgba(20,43,74,.035); transition: transform .2s, box-shadow .2s; }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .icon-box {
+      width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 18px;
+      border-radius: 12px; background: var(--blue-soft); color: var(--blue); font-size: 1.35rem;
+    }
+    .feature-card h3 { font-size: 1.05rem; }
+    .feature-card p { margin-bottom: 0; font-size: .91rem; }
+
+    /* Akademik */
+    .academic-top { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 25px; }
+    .academic-top h2 { margin-bottom: 8px; font-size: clamp(1.7rem, 3vw, 2.25rem); }
+    .search-box {
+      width: min(100%, 310px); min-height: 46px; display: flex; align-items: center; gap: 9px;
+      padding: 0 14px; border: 1px solid var(--border); border-radius: 9px; background: var(--white);
+    }
+    .search-box input { width: 100%; min-width: 0; border: 0; outline: 0; color: var(--heading); background: transparent; }
+    .academic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .academic-card { padding: 22px; }
+    .academic-card h3 { margin-bottom: 9px; font-size: 1.04rem; }
+    .academic-card p { margin: 0; font-size: .91rem; }
+    .empty-state { display: none; padding: 24px; text-align: center; border: 1px dashed var(--border); border-radius: 12px; }
+
+    /* Dosen */
+    .lecturer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .lecturer-card { padding: 20px; text-align: center; }
+    .lecturer-photo {
+      width: 104px; height: 104px; display: grid; place-items: center; margin: 0 auto 16px;
+      border-radius: 50%; background: var(--blue-soft); color: var(--blue);
+      border: 4px solid #F8FAFC; font-size: 2rem;
+    }
+    .lecturer-card h3 { margin-bottom: 5px; font-size: 1rem; }
+    .lecturer-card p { margin: 0; font-size: .86rem; }
+    .lecturer-card .degree { margin-bottom: 8px; color: var(--blue); font-weight: 700; }
+
+
+    .contact-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 28px; align-items: start; }
+    .contact-form {
+      padding: 26px; border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--white); box-shadow: var(--shadow);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label { color: var(--heading); font-size: .9rem; font-weight: 700; }
+    .form-field input, .form-field textarea {
+      width: 100%; min-height: 46px; padding: 11px 13px; border: 1px solid #CBD5E1;
+      border-radius: 8px; color: var(--heading); background: #fff; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-field textarea { min-height: 135px; resize: vertical; }
+    .form-field input:focus, .form-field textarea:focus {
+      border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.13);
+    }
+    .form-field input[aria-invalid="true"], .form-field textarea[aria-invalid="true"] { border-color: #DC2626; }
+    .field-error { min-height: 18px; color: #B91C1C; font-size: .8rem; }
+    .form-success {
+      display: none; margin-top: 16px; padding: 13px 15px; border: 1px solid #86EFAC;
+      border-radius: 9px; color: #166534; background: #F0FDF4; font-size: .9rem;
+    }
+    .form-success.show { display: block; }
+
+    /* Kontak dan footer */
+    .contact-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .contact-list-single { grid-template-columns: 1fr; }
+    .contact-update-note { margin-top: 16px; }
+    .academic-update-note { margin-top: 18px; }
+    .contact-card { display: flex; gap: 13px; padding: 18px; }
+    .contact-card .icon-box { width: 40px; height: 40px; flex: 0 0 40px; margin: 0; font-size: 1.05rem; }
+    .contact-card h3 { margin: 0 0 4px; font-size: .95rem; }
+    .contact-card p { margin: 0; font-size: .88rem; overflow-wrap: anywhere; }
+    .site-footer { padding: 42px 0 22px; background: var(--navy); color: #CBD5E1; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; padding-bottom: 28px; }
+    .footer-brand { color: var(--white); }
+    .footer-brand p { max-width: 380px; margin-top: 16px; color: #CBD5E1; font-size: .9rem; }
+    .site-footer h3 { margin-bottom: 14px; color: var(--white); font-size: 1rem; }
+    .footer-links { display: grid; gap: 8px; font-size: .9rem; }
+    .footer-links a:hover { color: var(--white); }
+    .copyright { padding-top: 18px; border-top: 1px solid rgba(255,255,255,.15); text-align: center; font-size: .82rem; }
+    .back-top {
+      position: fixed; right: 20px; bottom: 20px; z-index: 20; width: 44px; height: 44px;
+      border: 0; border-radius: 50%; background: var(--blue); color: var(--white);
+      box-shadow: var(--shadow); cursor: pointer; opacity: 0; visibility: hidden;
+      pointer-events: none; transition: opacity .2s, visibility .2s;
+    }
+    .back-top.visible { opacity: 1; visibility: visible; pointer-events: auto; }
+    .placeholder-tag {
+      display: inline-block; margin-top: 10px; padding: 4px 8px; border-radius: 6px;
+      background: #FFF7ED; color: #9A3412; font-size: .72rem; font-weight: 700;
+    }
+
+    @media (max-width: 1023px) {
+      .nav-links { gap: 16px; }
+      .feature-grid, .lecturer-grid { grid-template-columns: repeat(2, 1fr); }
+      .academic-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid { gap: 32px; }
+    }
+    @media (max-width: 767px) {
+      html { scroll-padding-top: 76px; }
+      .container { width: min(100% - 32px, var(--container)); }
+      .section { padding: 62px 0; }
+      .nav-wrap { min-height: 68px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links {
+        display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 12px 20px 18px;
+        flex-direction: column; align-items: stretch; gap: 3px; background: var(--white);
+        border-bottom: 1px solid var(--border); box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 11px 8px; }
+      .hero { padding: 64px 0; }
+      .hero-grid, .profile-grid { grid-template-columns: 1fr; gap: 30px; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 270px; }
+      .profile-visual { min-height: 250px; }
+      .profile-symbol { width: 135px; height: 135px; font-size: 3.2rem; }
+      .vision-mission, .contact-list { grid-template-columns: 1fr; }
+      .academic-top { align-items: stretch; flex-direction: column; }
+      .search-box { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 480px) {
+      .feature-grid, .academic-grid, .lecturer-grid, .footer-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-field.full { grid-column: auto; }
+      .contact-form { padding: 20px; }
+      .footer-brand { grid-column: auto; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { width: 100%; }
+      .brand-text { font-size: .88rem; }
+      .brand-text small { font-size: .65rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#beranda" aria-label="Kembali ke Beranda">
+        <span class="brand-mark" aria-hidden="true">LOGO</span>
+        <span class="brand-text">Informatika<small>Barcelona University</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false" aria-controls="mainNav">☰</button>
+      <nav class="nav-links" id="mainNav" aria-label="Navigasi utama">
+        <a href="#beranda" class="active">Beranda</a>
+        <a href="#profil">Profil</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#akademik">Akademik</a>
+        <a href="#dosen">Dosen</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Selamat datang</span>
+          <h1>Mengenal <span>Informatika</span> Barcelona University</h1>
+          <p class="hero-copy">Program Studi Informatika Barcelona University berfokus pada pengembangan ilmu komputer, riset inovatif, dan pembentukan lulusan yang profesional serta adaptif terhadap perkembangan teknologi global.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#profil">Jelajahi Program Studi <span aria-hidden="true">→</span></a>
+            <a class="btn btn-outline" href="#akademik">Lihat Informasi Akademik</a>
+          </div>
+          <span class="placeholder-tag">Profil program studi</span>
+        </div>
+        <div class="hero-visual" role="img" aria-label="Ilustrasi gedung kampus Barcelona University sebagai gambar sementara">
+          <svg class="campus-art" viewBox="0 0 500 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="250" cy="150" r="128" fill="#fff" opacity=".65"/>
+            <path d="M70 276h360" stroke="#9BB8DD" stroke-width="8" stroke-linecap="round"/>
+            <path d="M112 144 250 67l138 77v15H112z" fill="#142B4A"/>
+            <path d="M132 158h236v112H132z" fill="#fff" stroke="#A9C4E8" stroke-width="4"/>
+            <path d="M112 270h276" stroke="#2563EB" stroke-width="8"/>
+            <path d="M224 213h52v57h-52z" fill="#DBEAFE"/>
+            <path d="M153 179h34v35h-34zm54 0h34v35h-34zm72 0h34v35h-34zm54 0h22v35h-22z" fill="#93C5FD"/>
+            <path d="M245 67V35h10v32" fill="#2563EB"/>
+            <path d="M255 37h49l-12 13h-37z" fill="#2563EB"/>
+            <path d="M80 270v-50m-13 50 13-38 13 38" stroke="#60A5FA" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M420 270v-50m-13 50 13-38 13 38" stroke="#60A5FA" stroke-width="6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="visual-caption">Ilustrasi kampus · Ganti dengan aset resmi yang telah mendapat izin</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profil">
+      <div class="container">
+        <div class="profile-grid">
+          <div class="profile-visual" role="img" aria-label="Ilustrasi simbol pendidikan sebagai gambar sementara">
+            <div class="profile-symbol" aria-hidden="true">▤</div>
+          </div>
+          <div class="profile-copy">
+            <span class="eyebrow">Tentang kami</span>
+            <h2>Profil Program Studi Informatika</h2>
+            <p>Program Studi Informatika Barcelona University mempelajari dasar-dasar ilmu komputer serta penerapan teknologi untuk merancang, membangun, dan mengembangkan solusi digital. Program studi ini mengarahkan mahasiswa untuk memahami teori komputasi sekaligus mengembangkan keterampilan praktis yang relevan dengan kebutuhan teknologi.</p>
+            <p class="small-note">Informasi profil dan sejarah institusi dapat dilengkapi lebih lanjut menggunakan dokumen resmi universitas.</p>
+            <div class="vision-mission">
+              <article class="info-card">
+                <h3>Visi</h3>
+                <p>Menjadi program studi Informatika yang unggul dalam pengembangan ilmu komputer, riset inovatif, serta menghasilkan lulusan yang profesional, adaptif terhadap perkembangan teknologi global.</p>
+              </article>
+              <article class="info-card">
+                <h3>Misi</h3>
+                <ol>
+                  <li>Menyelenggarakan pendidikan dan pengajaran ilmu informatika yang berkualitas tinggi berbasis kurikulum terkini dan kebutuhan industri.</li>
+                  <li>Mengembangkan kegiatan penelitian dan pengembangan riset di bidang kecerdasan buatan, rekayasa perangkat lunak, dan sistem cerdas yang berdampak bagi masyarakat.</li>
+                  <li>Melaksanakan pengabdian kepada masyarakat melalui penerapan solusi teknologi informasi yang aplikatif dan berkelanjutan.</li>
+                </ol>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="keunggulan">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Nilai program studi</span>
+          <h2>Keunggulan Program Studi</h2>
+          <p>Empat aspek utama yang mendukung proses pembelajaran dan pengembangan kompetensi mahasiswa Informatika.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="icon-box" aria-hidden="true">▣</div>
+            <h3>Pembelajaran</h3>
+            <p>Pendekatan kurikulum berbasis Outcome-Based Education (OBE) mengintegrasikan teori fundamental ilmu komputer dengan praktik industri modern. Pembelajaran didukung metode interaktif, project-based learning, dan kolaborasi tim.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-box" aria-hidden="true">⌂</div>
+            <h3>Fasilitas</h3>
+            <p>Laboratorium komputer dan jaringan berkinerja tinggi, perangkat lunak pemrograman berlisensi resmi, ruang diskusi kreatif, serta akses perpustakaan digital untuk mendukung riset dan eksplorasi mahasiswa.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-box" aria-hidden="true">✦</div>
+            <h3>Pengembangan Kompetensi</h3>
+            <p>Program sertifikasi keahlian profesional berstandar industri, misalnya pemrograman, data science, dan keamanan siber; workshop teknologi terkini; serta wadah inkubator komunitas pembuat kode dan kompetisi IT.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-box" aria-hidden="true">↗</div>
+            <h3>Prospek Karier</h3>
+            <p>Lulusan dipersiapkan untuk berkarier sebagai Software Engineer, Web/Mobile Developer, Data Scientist, UI/UX Designer, Network Administrator, dan System Analyst.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="akademik">
+      <div class="container">
+        <div class="academic-top">
+          <div>
+            <span class="eyebrow">Kegiatan belajar</span>
+            <h2>Informasi Akademik</h2>
+            <p>Kurikulum, bidang keilmuan, serta pengalaman praktikum dan proyek dalam Program Studi Informatika.</p>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" id="academicSearch" placeholder="Cari bidang pembelajaran..." aria-label="Cari bidang pembelajaran">
+          </label>
+        </div>
+        <div class="academic-grid" id="academicGrid">
+          <article class="academic-card" data-search="kurikulum mata kuliah struktur pembelajaran">
+            <div class="icon-box" aria-hidden="true">▤</div>
+            <h3>Kurikulum</h3>
+            <p>Mengacu pada kurikulum nasional berstandar KKNI dan rekomendasi asosiasi program studi informatika. Kurikulum terdiri atas mata kuliah wajib dan pilihan (peminatan), yang dirancang untuk ditempuh dalam 8 semester dengan total 144 SKS.</p>
+          </article>
+          <article class="academic-card" data-search="bidang pembelajaran kompetensi dasar">
+            <div class="icon-box" aria-hidden="true">◎</div>
+            <h3>Bidang Pembelajaran</h3>
+            <p>Fokus pembelajaran mencakup Algoritma dan Pemrograman, Rekayasa Perangkat Lunak, Jaringan Komputer, Basis Data, Kecerdasan Buatan (Artificial Intelligence), Keamanan Informasi, serta Interaksi Manusia dan Komputer (UI/UX).</p>
+          </article>
+          <article class="academic-card" data-search="praktikum proyek penelitian tugas akhir">
+            <div class="icon-box" aria-hidden="true">⌘</div>
+            <h3>Praktikum dan Proyek</h3>
+            <p>Kegiatan belajar diperkuat melalui praktikum laboratorium terstruktur, proyek mata kuliah berbasis studi kasus nyata, magang industri, serta penyusunan tugas akhir atau skripsi riset teknologi.</p>
+          </article>
+        </div>
+        <p class="empty-state" id="academicEmpty" role="status" aria-live="polite" aria-atomic="true">Tidak ada informasi akademik yang cocok dengan pencarian.</p>
+        <p class="small-note academic-update-note">Rincian kurikulum, jumlah SKS, dan pelaksanaan kegiatan akademik perlu disesuaikan dengan ketentuan resmi Barcelona University.</p>
+      </div>
+    </section>
+
+    <section class="section section-light" id="dosen">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Tenaga pengajar · data mockup</span>
+          <h2>Dosen Program Studi Informatika</h2>
+          <p>Daftar nama yang ditampilkan mengikuti data yang diberikan untuk kebutuhan rancangan website.</p>
+        </div>
+        <div class="lecturer-grid">
+          <article class="lecturer-card">
+            <div class="lecturer-photo" aria-hidden="true">👤</div>
+            <h3>Leo Messi</h3>
+            <p class="degree">Gelar akademik belum dicantumkan</p>
+            <p>Bidang keahlian: belum dicantumkan</p>
+            <span class="placeholder-tag">Nama contoh — verifikasi</span>
+          </article>
+          <article class="lecturer-card">
+            <div class="lecturer-photo" aria-hidden="true">👤</div>
+            <h3>Lamine Yamal</h3>
+            <p class="degree">Gelar akademik belum dicantumkan</p>
+            <p>Bidang keahlian: belum dicantumkan</p>
+            <span class="placeholder-tag">Nama contoh — verifikasi</span>
+          </article>
+          <article class="lecturer-card">
+            <div class="lecturer-photo" aria-hidden="true">👤</div>
+            <h3>Pau Cubarsi</h3>
+            <p class="degree">Gelar akademik belum dicantumkan</p>
+            <p>Bidang keahlian: belum dicantumkan</p>
+            <span class="placeholder-tag">Nama contoh — verifikasi</span>
+          </article>
+          <article class="lecturer-card">
+            <div class="lecturer-photo" aria-hidden="true">👤</div>
+            <h3>Pedri Gonzales</h3>
+            <p class="degree">Gelar akademik belum dicantumkan</p>
+            <p>Bidang keahlian: belum dicantumkan</p>
+            <span class="placeholder-tag">Nama contoh — verifikasi</span>
+          </article>
+        </div>
+        <p class="small-note lecturer-update-note">Nama dosen di atas dimasukkan sesuai data yang diberikan untuk mockup. Pastikan identitas, status sebagai dosen, gelar, bidang keahlian, dan foto diverifikasi sebelum website dipublikasikan.</p>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Hubungi kami</span>
+          <h2>Informasi Kontak</h2>
+          <p>Gunakan informasi kontak atau formulir berikut untuk menyampaikan pertanyaan mengenai program studi.</p>
+        </div>
+        <div class="contact-layout">
+          <div>
+            <div class="contact-list contact-list-single">
+              <article class="contact-card">
+                <div class="icon-box" aria-hidden="true">⌖</div>
+                <div><h3>Alamat</h3><p>[Alamat resmi kampus/program studi]</p></div>
+              </article>
+              <article class="contact-card">
+                <div class="icon-box" aria-hidden="true">✉</div>
+                <div><h3>Email</h3><p>[Email resmi]</p></div>
+              </article>
+              <article class="contact-card">
+                <div class="icon-box" aria-hidden="true">☎</div>
+                <div><h3>Telepon</h3><p>[Nomor telepon resmi]</p></div>
+              </article>
+              <article class="contact-card">
+                <div class="icon-box" aria-hidden="true">◎</div>
+                <div><h3>Media Sosial</h3><p>[Tautan media sosial resmi]</p></div>
+              </article>
+            </div>
+            <p class="small-note contact-update-note">Perbarui seluruh informasi kontak menggunakan data resmi sebelum website dipublikasikan.</p>
+          </div>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <h3>Kirim Pesan</h3>
+            <p class="small-note">Formulir ini hanya simulasi front-end. Pesan tidak dikirim atau disimpan ke server.</p>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="contactName">Nama lengkap</label>
+                <input type="text" id="contactName" name="name" autocomplete="name" placeholder="Masukkan nama" required minlength="2" maxlength="80" aria-describedby="nameError">
+                <span class="field-error" id="nameError"></span>
+              </div>
+              <div class="form-field">
+                <label for="contactEmail">Alamat email</label>
+                <input type="email" id="contactEmail" name="email" autocomplete="email" placeholder="nama@email.com" required maxlength="120" aria-describedby="emailError">
+                <span class="field-error" id="emailError"></span>
+              </div>
+              <div class="form-field full">
+                <label for="contactSubject">Subjek</label>
+                <input type="text" id="contactSubject" name="subject" placeholder="Topik pesan" required minlength="3" maxlength="100" aria-describedby="subjectError">
+                <span class="field-error" id="subjectError"></span>
+              </div>
+              <div class="form-field full">
+                <label for="contactMessage">Pesan</label>
+                <textarea id="contactMessage" name="message" placeholder="Tuliskan pertanyaan atau pesan..." required minlength="10" maxlength="1000" aria-describedby="messageError"></textarea>
+                <span class="field-error" id="messageError"></span>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Kirim Pesan <span aria-hidden="true">→</span></button>
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite" aria-atomic="true" tabindex="-1">
+              Pesan berhasil divalidasi! Ini merupakan simulasi, sehingga pesan belum dikirim ke pihak program studi.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand footer-brand" href="#beranda">
+            <span class="brand-mark">LOGO</span>
+            <span class="brand-text">Informatika<small>Barcelona University</small></span>
+          </a>
+          <p>Website profil Program Studi Informatika Barcelona University.</p>
+        </div>
+        <div>
+          <h3>Navigasi</h3>
+          <div class="footer-links">
+            <a href="#beranda">Beranda</a><a href="#profil">Profil</a><a href="#keunggulan">Keunggulan</a>
+            <a href="#akademik">Akademik</a><a href="#dosen">Dosen</a><a href="#kontak">Kontak</a>
+          </div>
+        </div>
+        <div>
+          <h3>Kontak</h3>
+          <div class="footer-links">
+            <span>[Alamat resmi Barcelona University]</span><span>[Email resmi program studi]</span><span>[Nomor telepon resmi]</span>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> Program Studi Informatika · Barcelona University. Seluruh hak cipta dilindungi.</div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop" aria-label="Kembali ke atas">↑</button>
+
+  <script>
+    // Navigasi mobile: satu fungsi terpusat menjaga class dan atribut ARIA tetap sinkron.
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    function setMobileMenu(open) {
+      mainNav.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Tutup navigasi' : 'Buka navigasi');
+      menuToggle.textContent = open ? '×' : '☰';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      setMobileMenu(!isOpen);
+    });
+
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setMobileMenu(false));
+    });
+
+    // Escape menutup menu dan mengembalikan fokus ke tombol hamburger.
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        setMobileMenu(false);
+        menuToggle.focus();
+      }
+    });
+
+    // Klik di luar area navigasi menutup menu mobile.
+    document.addEventListener('click', event => {
+      const clickedInsideMenu = mainNav.contains(event.target);
+      const clickedToggle = menuToggle.contains(event.target);
+
+      if (!clickedInsideMenu && !clickedToggle) {
+        setMobileMenu(false);
+      }
+    });
+
+    // Jika viewport berubah ke desktop, pastikan status menu kembali tertutup.
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 767) setMobileMenu(false);
+    });
+
+    // Pencarian lokal pada kartu bidang akademik (tanpa API/backend).
+    const academicSearch = document.getElementById('academicSearch');
+    const academicCards = [...document.querySelectorAll('.academic-card')];
+    const academicEmpty = document.getElementById('academicEmpty');
+
+    academicSearch.addEventListener('input', event => {
+      const query = event.target.value.trim().toLocaleLowerCase('id');
+      let visibleCount = 0;
+
+      academicCards.forEach(card => {
+        const searchableText = (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase('id');
+        const matches = searchableText.includes(query);
+        card.hidden = !matches;
+        if (matches) visibleCount++;
+      });
+
+      academicEmpty.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+
+    // Tandai menu sesuai bagian yang sedang terlihat.
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            const active = link.getAttribute('href') === '#' + entry.target.id;
+            link.classList.toggle('active', active);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Tombol kembali ke atas dan tahun copyright otomatis.
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 450);
+    }, { passive: true });
+
+    backTop.addEventListener('click', () => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotion ? 'auto' : 'smooth'
+      });
+    });
+
+
+    // Validasi formulir kontak. Ini simulasi; tidak ada pengiriman ke server.
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const formFields = [
+      { id: 'contactName', errorId: 'nameError', label: 'Nama' },
+      { id: 'contactEmail', errorId: 'emailError', label: 'Email' },
+      { id: 'contactSubject', errorId: 'subjectError', label: 'Subjek' },
+      { id: 'contactMessage', errorId: 'messageError', label: 'Pesan' }
+    ];
+
+    function validateContactField(field) {
+      const input = document.getElementById(field.id);
+      const error = document.getElementById(field.errorId);
+      const value = input.value.trim();
+      let message = '';
+
+      if (!value) {
+        message = field.label + ' wajib diisi.';
+      } else if (field.id === 'contactName' && value.length < 2) {
+        message = 'Nama minimal 2 karakter.';
+      } else if (field.id === 'contactName' && value.length > 80) {
+        message = 'Nama maksimal 80 karakter.';
+      } else if (field.id === 'contactEmail') {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (value.length > 120) {
+          message = 'Email maksimal 120 karakter.';
+        } else if (!emailPattern.test(value)) {
+          message = 'Masukkan alamat email dengan format yang benar.';
+        }
+      } else if (field.id === 'contactSubject' && value.length < 3) {
+        message = 'Subjek minimal 3 karakter.';
+      } else if (field.id === 'contactSubject' && value.length > 100) {
+        message = 'Subjek maksimal 100 karakter.';
+      } else if (field.id === 'contactMessage' && value.length < 10) {
+        message = 'Pesan minimal 10 karakter.';
+      } else if (field.id === 'contactMessage' && value.length > 1000) {
+        message = 'Pesan maksimal 1000 karakter.';
+      }
+
+      error.textContent = message;
+      input.setAttribute('aria-invalid', message ? 'true' : 'false');
+      return !message;
+    }
+
+    formFields.forEach(field => {
+      const input = document.getElementById(field.id);
+      input.addEventListener('input', () => {
+        validateContactField(field);
+        formSuccess.classList.remove('show');
+      });
+      input.addEventListener('blur', () => validateContactField(field));
+    });
+
+    contactForm.addEventListener('submit', event => {
+      event.preventDefault();
+      formSuccess.classList.remove('show');
+
+      const results = formFields.map(validateContactField);
+      const firstInvalid = formFields.find((field, index) => !results[index]);
+
+      if (firstInvalid) {
+        document.getElementById(firstInvalid.id).focus();
+        return;
+      }
+
+      formSuccess.classList.add('show');
+      formSuccess.focus();
+      contactForm.reset();
+      formFields.forEach(field => {
+        document.getElementById(field.errorId).textContent = '';
+        document.getElementById(field.id).setAttribute('aria-invalid', 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
